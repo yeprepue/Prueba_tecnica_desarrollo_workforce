@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>the rick and morty</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-white bg-white">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+                <img src="img/LOGO.png" style="width: 10%;" alt="">
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">Docs </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="btn btn-default" href="#">
+                            HELP US
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container wy-text-center">
+            <h1 class="text-center">The Rick and Morty API</h1>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 mx-auto">
+                <table id="tblAPI" class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th scope=" col ">Nombre</th>
+                            <th scope="col ">Especie</th>
+                            <th scope="col ">Género</th>
+                            <th scope="col ">Imagen</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</body>
+<script>
+    fetch('https://rickandmortyapi.com/api/character/')
+        .then(response => response.json())
+        .then(json => {
+            var data = json.results;
+            data.forEach(function(element) {
+                $("#tblAPI tbody").append(`
+                    <tr>
+                        <td>`+ element.name +`</td>
+                        <td>`+ element.species +`</td>
+                        <td>`+ element.gender +`</td>
+                        <td><img src="`+ element.image +`" style="width: 30%"></td>
+                    </tr>
+                `);
+            });
+            console.log(json)
+        })
+</script>
+
+</html>
